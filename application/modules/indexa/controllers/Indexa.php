@@ -186,4 +186,67 @@ class Indexa extends CI_Controller {
 		$this->data['variables'] = $grab;
 		$this->parser->parse('script/grab_variable',$this->data);
 	}
+
+	public function excel(){
+
+		$variables = array('nama lengkap','tempat lahir','umur/tanggal lahir',
+											 'jenis kelamin','kebangsaan','tempat tinggal','agama',
+											 'pekerjaan','pendidikan');
+		$grab = array();
+
+		$this->db->db_select('indexa');
+		$this->db->select('id,content');
+		$this->db->from("t_m_raw_content");
+		$result = $this->db->get();
+
+		foreach($result->result() as $row) {
+			$putusan = explode(PHP_EOL,$row->content);
+
+
+			foreach ($putusan as $key => $sentence) {
+				if(preg_match('/^(nomor\s?:|no.)/i', $sentence)){
+					$no = $sentence;
+					break;
+				}
+			}
+
+			foreach ($variables as $varkey => $variable) {
+				foreach ($putusan as $key => $sentence) {
+
+					$cleanvar = str_replace("/", "\/", $variable);
+					if(preg_match('/^'.$cleanvar.'\s?:/i', $sentence)){
+						$grab[$no][$variable] = trim(substr($sentence, strpos($sentence,":")+1),";");
+						break;
+					}
+				}
+			}
+		}
+
+		//load our new PHPExcel library
+    $this->load->library('excel');
+    //activate worksheet number 1
+    $this->excel->setActiveSheetIndex(0);
+    //name the worksheet
+    $this->excel->getActiveSheet()->setTitle('Variables');
+
+    // read data to active sheet
+    $this->excel->getActiveSheet()->fromArray($grab);
+
+    $filename='indexalaw_variables.xls'; //save our workbook as this file name
+
+    header('Content-Type: application/vnd.ms-excel'); //mime type
+
+    header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+
+    header('Cache-Control: max-age=0'); //no cache
+                
+    //save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
+    //if you want to save it as .XLSX Excel 2007 format
+
+    $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');
+
+    //force user to download the Excel file without writing it to server's HD
+    $objWriter->save('php://output');
+	}
+
 }

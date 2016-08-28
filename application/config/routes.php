@@ -55,5 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['insert-data'] = 'indexa/insert';
 $route['grab-variables'] = 'indexa/grab_variables';
+$route['excel'] = 'indexa/excel';
 
 
