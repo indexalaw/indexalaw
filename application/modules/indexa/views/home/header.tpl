@@ -20,10 +20,10 @@
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul class="nav navbar-nav navbar-right">
                           <!-- NAV -->
-                          <li><a href="#HOME">HOME</a> </li>
-                          <li><a href="#ABOUT">ABOUT </a> </li>
+                          <li><a href="#HOME">HOMES</a> </li>
+                          <li><a href="#ABOUT">ABOUTS </a> </li>
                           <li><a href="#SERVICES">SERVICES</a></li>
-                          <li><a href="#MAP">MAP</a> </li>
+                          <li><a href="#MAP">MAPS</a> </li>
                           <li><a href="#API">API </a> </li>
                           <li><a href="#CONTACT">CONTACT </a> </li>
                       </ul>
