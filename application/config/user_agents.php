@@ -207,5 +207,12 @@ $robots = array(
 	'CRAZYWEBCRAWLER'	=> 'Crazy Webcrawler',
 	'adsbot-google'		=> 'AdsBot Google',
 	'feedfetcher-google'	=> 'Feedfetcher Google',
+<<<<<<< HEAD
 	'curious george'	=> 'Curious George'
+=======
+	'curious george'	=> 'Curious George',
+	'ia_archiver'		=> 'Alexa Crawler',
+	'MJ12bot'		=> 'Majestic-12',
+	'Uptimebot'		=> 'Uptimebot'
+>>>>>>> f8f78437528dba4d58ade7bafd3a0bafa3452a58
 );
