@@ -13,7 +13,7 @@
                           <span class="icon-bar"></span>
                       </button>
                       <a class="navbar-brand" href="#">
-                          Indonesia Index Application Laws
+                          Indonesia Index Application Law
                       </a>
                   </div>
                   <!-- Collect the nav links, forms, and other content for toggling -->
