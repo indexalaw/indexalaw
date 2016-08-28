@@ -13,14 +13,14 @@
                           <span class="icon-bar"></span>
                       </button>
                       <a class="navbar-brand" href="#">
-                          Indonesia Index Application Laws
+                          Indonesia Index Application Law
                       </a>
                   </div>
                   <!-- Collect the nav links, forms, and other content for toggling -->
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul class="nav navbar-nav navbar-right">
                           <!-- NAV -->
-                          <li><a href="#HOME">HOME</a> </li>
+                          <li><a href="#HOME">HOMES</a> </li>
                           <li><a href="#ABOUT">ABOUT </a> </li>
                           <li><a href="#SERVICES">SERVICES</a></li>
                           <li><a href="#MAP">MAP</a> </li>
