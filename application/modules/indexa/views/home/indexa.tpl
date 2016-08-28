@@ -1,7 +1,7 @@
 {{extends file="../template/layout.tpl"}}
 
 {{block name= title}}
-	Indonesia Index Application Law
+	Indonesia Index Application Laws
 {{/block}}
 
 {{block name=addoncss}}
