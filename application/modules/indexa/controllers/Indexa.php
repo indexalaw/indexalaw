@@ -199,6 +199,14 @@ class Indexa extends CI_Controller {
 		$this->db->from("t_m_raw_content");
 		$result = $this->db->get();
 
+		// NAMA HEADER
+		$grab[0]['putusan'] = 'Putusan';
+		foreach($variables as $key => $value) {
+			$grab[0][$value] = ucwords($value);
+		}
+
+		// ISI EXCEL
+		$nomor = 1;
 		foreach($result->result() as $row) {
 			$putusan = explode(PHP_EOL,$row->content);
 
@@ -211,15 +219,24 @@ class Indexa extends CI_Controller {
 			}
 
 			foreach ($variables as $varkey => $variable) {
+
+				$flag = 0;
+				$grab[$nomor]['putusan'] = $no;
+
 				foreach ($putusan as $key => $sentence) {
 
 					$cleanvar = str_replace("/", "\/", $variable);
 					if(preg_match('/^'.$cleanvar.'\s?:/i', $sentence)){
-						$grab[$no][$variable] = trim(substr($sentence, strpos($sentence,":")+1),";");
+						$flag = 1;
+						$grab[$nomor][$variable] = trim(substr($sentence, strpos($sentence,":")+1),";.");
 						break;
 					}
 				}
+				if($flag == 0){
+					$grab[$nomor][$variable] = "";
+				}
 			}
+			$nomor++;
 		}
 
 		//load our new PHPExcel library
@@ -230,6 +247,8 @@ class Indexa extends CI_Controller {
     $this->excel->getActiveSheet()->setTitle('Variables');
 
     // read data to active sheet
+    
+    $this->excel->getActiveSheet()->fromArray($variables);
     $this->excel->getActiveSheet()->fromArray($grab);
 
     $filename='indexalaw_variables.xls'; //save our workbook as this file name
